@@ -9,9 +9,10 @@ function memoizeMe(){
   var domElementsObject = {};
 
   var query = function(identifier){
-    if(!identifier in domElementsObject){
-    domElementsObject[query] = document.querySelector(identifier);
+    if(identifier in domElementsObject){
+      return domElementsObject[identifier];
     }
+    domElementsObject[identifier] = document.querySelector(identifier);
     return domElementsObject[identifier];
   };
 
