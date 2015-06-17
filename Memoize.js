@@ -22,7 +22,8 @@ function memoizeMe(){
 
 
   return {
-    query : query
+    query : query,
+    queryId : queryId
 
   };
 }
