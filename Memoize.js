@@ -17,12 +17,8 @@ function memoizeMe(){
   };
 
   var queryId = function(id){
-    var identifier = '#'+id;
-    return query(identifier);
+    return query('#'+id);
   }
-
-
-
 
   return {
     query : query,
