@@ -17,10 +17,10 @@ function memoizeMe(){
 
   var queryId = function(id){
     return query('#'+id);
-  }
+  };
 
   return {
     query : query,
     queryId : queryId
   };
-}
+};
