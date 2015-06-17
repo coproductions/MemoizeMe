@@ -17,8 +17,8 @@
     };
 
     var queryById = function(id){
-      if(typeof identifier !== 'string') {
-        throw new TypeError('Cache query received invalid input: ' + identifier);
+      if(typeof id !== 'string') {
+        throw new TypeError('Cache query received invalid input: ' + id);
       }
       if(id[0]==='#'){
         return queryBySelector(id);
