@@ -1,29 +1,34 @@
-(function memoizeMe(){
+(function(){
 
-  var domElementsCache = {};
+  window.MemoizeMe = memoizeMe();
 
-  var queryBySelector = function(identifier){
-    if(typeof identifier !== 'string') {
-      throw new TypeError('Cache query received invalid input: ' + identifier);
-    }
-    if(!(identifier in domElementsCache)){
-      domElementsCache[identifier] = document.querySelector(identifier);
-    }
-    return domElementsCache[identifier];
+  function memoizeMe(){
+
+    var domElementsCache = {};
+
+    var queryBySelector = function(identifier){
+      if(typeof identifier !== 'string') {
+        throw new TypeError('Cache query received invalid input: ' + identifier);
+      }
+      if(!(identifier in domElementsCache)){
+        domElementsCache[identifier] = document.querySelector(identifier);
+      }
+      return domElementsCache[identifier];
+    };
+
+    var queryById = function(id){
+      if(typeof identifier !== 'string') {
+        throw new TypeError('Cache query received invalid input: ' + identifier);
+      }
+      if(id[0]==='#'){
+        return queryBySelector(id);
+      }
+      return queryBySelector('#'+id);
+    };
+
+    return {
+      queryBySelector : queryBySelector,
+      queryById : queryById
+    };
   };
-
-  var queryById = function(id){
-    if(typeof identifier !== 'string') {
-      throw new TypeError('Cache query received invalid input: ' + identifier);
-    }
-    if(id[0]==='#'){
-      return queryBySelector(id);
-    }
-    return queryBySelector('#'+id);
-  };
-
-  return {
-    queryBySelector : queryBySelector,
-    queryById : queryById
-  };
-};)();
+})();
