@@ -1,5 +1,7 @@
 
-
+window.onload = function(){
+var memoizeMe = memoizeMe();
+};
 
 
 function memoizeMe(){
