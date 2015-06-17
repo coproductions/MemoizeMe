@@ -1,26 +1,29 @@
+(function memoizeMe(){
 
-window.onload = function(){
-var memoizeMe = memoizeMe();
-};
+  var domElementsCache = {};
 
-
-function memoizeMe(){
-
-  var domElementsObject = {};
-
-  var query = function(identifier){
-    if(!(identifier in domElementsObject)){
-      domElementsObject[identifier] = document.querySelector(identifier);
+  var queryBySelector = function(identifier){
+    if(typeof identifier !== 'string') {
+      throw new TypeError('Cache query received invalid input: ' + identifier);
     }
-    return domElementsObject[identifier];
+    if(!(identifier in domElementsCache)){
+      domElementsCache[identifier] = document.querySelector(identifier);
+    }
+    return domElementsCache[identifier];
   };
 
-  var queryId = function(id){
-    return query('#'+id);
+  var queryById = function(id){
+    if(typeof identifier !== 'string') {
+      throw new TypeError('Cache query received invalid input: ' + identifier);
+    }
+    if(id[0]==='#'){
+      return queryBySelector(id);
+    }
+    return queryBySelector('#'+id);
   };
 
   return {
-    query : query,
-    queryId : queryId
+    queryBySelector : queryBySelector,
+    queryById : queryById
   };
-};
+};)();
